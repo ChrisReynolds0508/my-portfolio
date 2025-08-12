@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { NavLink } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function Header() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <header style={headerStyle}>
+      <nav>
+        <NavLink to="/" style={linkStyle} end>
+          Home
+        </NavLink>{" "}
+        |{" "}
+        <NavLink to="/about" style={linkStyle}>
+          About
+        </NavLink>{" "}
+        |{" "}
+        <NavLink to="/projects" style={linkStyle}>
+          Projects
+        </NavLink>{" "}
+        |{" "}
+        <NavLink to="/contact" style={linkStyle}>
+          Contact
+        </NavLink>
+      </nav>
+    </header>
+  );
 }
 
-export default App
+const headerStyle = {
+  padding: "1rem",
+  backgroundColor: "#282c34",
+  color: "white",
+  textAlign: "center",
+};
+
+const linkStyle = ({ isActive }) => ({
+  color: isActive ? "#61dafb" : "white",
+  textDecoration: "none",
+  margin: "0 0.5rem",
+});
